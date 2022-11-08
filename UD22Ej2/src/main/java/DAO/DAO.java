@@ -8,8 +8,8 @@ import java.sql.Statement;
 
 public class DAO {
 	private final String DRIVER = "com.mysql.cj.jdbc.Driver";
-	private final String USER = "remote";
-	private final String PASSWORD = "";
+	private final String USER = "root";
+	private final String PASSWORD = "SarIMp9jrL6OkqrU6U0g";
 	private final String bd = "tarea22_1;";
 
 	protected Connection conexion = null;
@@ -19,7 +19,7 @@ public class DAO {
 	public void connect() {
 		try {
 			Class.forName(DRIVER);
-			String URL = "jdbc:mysql://https://192.168.1.45:9090?useTimezone=true&serverTimezone=UTC";
+			String URL = "jdbc:mysql://containers-us-west-88.railway.app:5950?useTimezone=true&serverTimezone=UTC";
 			conexion = DriverManager.getConnection(URL, USER, PASSWORD);
 			System.out.println("conexion ok");
 		} catch (ClassNotFoundException e) {
@@ -49,8 +49,25 @@ public class DAO {
 		System.out.println("desconexion exitosa");
 	}
 
+	public void Create() throws Exception {
+		try {
+			System.out.println("Intentamos conectar....");
+			connect();
+			statement = conexion.createStatement();
+			statement.executeUpdate("DROP database IF EXISTS " + bd + ";");
+			statement.executeUpdate("CREATE DATABASE IF NOT EXISTS  " + bd + ";");
+			statement.executeUpdate("use " + bd);
+		} catch (SQLException e) {
+			System.out.println("Error en la conexion funcion Create" + e);
+			e.printStackTrace();
+		}
+		disconnect();
+
+	}
+	
 	public void CUD(String sql) throws Exception {
 		try {
+			System.out.println("Intentamos conectar....");
 			connect();
 			statement = conexion.createStatement();
 			statement.executeUpdate("use " + bd);

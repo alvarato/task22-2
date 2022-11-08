@@ -8,16 +8,19 @@ import javax.swing.JFrame;
 
 import DAO.DAOCliente;
 import models.Cliente;
+import models.Video;
 import views.Vista;
 
 public class Controlador implements ActionListener{
 
 	private Cliente cliente;
+	private Video video;
 	private Vista vista;
 	private DAOCliente daoCliente;
 	
-	public Controlador (Cliente cliente, Vista vista) {
+	public Controlador (Cliente cliente, Video video, Vista vista) {
 		this.cliente = cliente;
+		this.video = video;
 		this.vista = vista;
 		this.daoCliente = new DAOCliente();
 		this.vista.btnCrearTabla.addActionListener(this);
@@ -26,17 +29,12 @@ public class Controlador implements ActionListener{
 	}
 	
 	public void iniciarVista() {
-		vista.setTitle("Cliente");
+		vista.setTitle("Cliente+Video");
 		vista.pack();
 		vista.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		vista.setLocationRelativeTo(null);
 		vista.setVisible(true);
 	}
-	
-	
-	
-	
-	
 	
 
 	@Override

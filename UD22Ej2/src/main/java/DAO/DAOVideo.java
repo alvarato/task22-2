@@ -4,7 +4,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import models.Video;
-import models.Video;
 
 public class DAOVideo extends DAO {
 	
