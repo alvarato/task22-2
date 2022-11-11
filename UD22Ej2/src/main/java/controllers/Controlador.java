@@ -15,14 +15,11 @@ import views.Vista;
 public class Controlador implements ActionListener{
 
 	private Cliente cliente;
-	private Video video;
 	private Vista vista;
 	private DAOCliente daoCliente;
-	private DAOVideo daoVideo;
 	
-	public Controlador (Cliente cliente, Video video, Vista vista) {
+	public Controlador (Cliente cliente, Vista vista) {
 		this.cliente = cliente;
-		this.video = video;
 		this.vista = vista;
 		this.daoCliente = new DAOCliente();
 		this.vista.btnCrearTabla.addActionListener(this);
@@ -31,7 +28,7 @@ public class Controlador implements ActionListener{
 	}
 	
 	public void iniciarVista() {
-		vista.setTitle("Cliente+Video");
+		vista.setTitle("Cliente");
 		vista.pack();
 		vista.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		vista.setLocationRelativeTo(null);
@@ -64,30 +61,7 @@ public class Controlador implements ActionListener{
 				e.printStackTrace();
 			}
 		}
-		else if (vista.btnInsertarVideo == event.getSource()){
-			try {
-				daoVideo.crearTabla();
-			} catch (Exception e) {
-				System.out.println("Fallo al crear tabla");
-			}
-			
-		}
-		else if (vista.btnBuscarPorTitulo == event.getSource()) {
-			try {
-				daoVideo.selectAll();
-			} catch (Exception e) {
-				System.out.println("Fallo al buscar: " + e);
-			}
-		}
-		else if (vista.btnBorrarVideos == event.getSource()) {
-			//id = Integer.parseInt(textId.getText());
-			try {
-				daoVideo.deleteFromId(0);
-			} catch (Exception e) {
-				// TODO: handle exception
-				e.printStackTrace();
-			}
-		}
+		
 	}
 	
 		

@@ -3,6 +3,7 @@ package com.app.task22.t1;
 import javax.swing.JPanel;
 
 import controllers.Controlador;
+import controllers.ControladorVideo;
 import models.Cliente;
 import models.Video;
 import views.Vista;
@@ -15,8 +16,10 @@ public class MainApp {
 		Cliente cliente = new Cliente();
 		Video video = new Video();
 		Vista vista = new Vista();
-		Controlador controlador = new Controlador(cliente,video,vista);
+		Controlador controlador = new Controlador(cliente,vista);
+		ControladorVideo controladorVideo = new ControladorVideo(video, vista);
 		controlador.iniciarVista();
+		controladorVideo.iniciarVista();
 		//controlador.addUser();
 	}
 }
