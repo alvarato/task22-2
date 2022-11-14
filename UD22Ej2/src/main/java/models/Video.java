@@ -53,7 +53,7 @@ public class Video {
 
 	@Override
 	public String toString() {
-		return "El vídeo con ID " + id + ", se llama " + titulo + ", su director es " + director + ", y el ID del cliente es" + id_cliente + "]";
+		return "El vídeo " + id + ", se llama " + titulo + ", su director es " + director + ", y el ID del cliente es " + id_cliente ;
 	}
 
 }

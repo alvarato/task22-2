@@ -22,14 +22,15 @@ public class Vista extends JFrame {
 
 	private JPanel contentPane;
 	public JTextField textField_BuscarNombre;
-	public JTable table_1;
 	public JTextField textField_Nombre;
 	public JTextField textField_Apellido;
 	public JTextField textField_Direccion;
 	public JTextField textField_Fecha;
 	public JTextField textField_Dni;
-	public JButton btnBorrarTodo, btnBuscar, btnCrearTabla, btnInsertarVideo, btnBorrarVideos, btnBuscarPorTitulo;
-	public JTable tableVideos;
+	public JButton btnBorrarTodo, btnBuscar, btnCrearTabla, btnInsertarVideo, btnBorrarVideos, btnBuscarPorTitulo, btnAñadirCliente, btnCrearTablaVideo;
+	public JTextArea textArea;
+	public JTextField textField_IdABorrar;
+	public JTextArea textAreaCliente, textArea_Video;
 	public JTextField textField_Titulo;
 	public JTextField textField_IDCliente;
 	public JTextField textField_Director;
@@ -39,6 +40,7 @@ public class Vista extends JFrame {
 	public JTextField textField_BuscarXTitulo;
 	public JLabel lblFormularioVideo;
 	public JLabel lblBuscadorDeVideos;
+	public JTextField textFieldBorrarVideo;
 
 	/**
 	 * Launch the application.
@@ -75,30 +77,17 @@ public class Vista extends JFrame {
 		getContentPane().add(btnBuscar);
 
 		textField_BuscarNombre = new JTextField();
-		textField_BuscarNombre.setBounds(40, 311, 199, 43);
+		textField_BuscarNombre.setBounds(39, 311, 199, 43);
 		getContentPane().add(textField_BuscarNombre);
 		textField_BuscarNombre.setColumns(10);
 
-		btnBorrarTodo = new JButton("Borrar todo");
-		btnBorrarTodo.setBounds(274, 187, 187, 31);
+		btnBorrarTodo = new JButton("Borrar");
+		btnBorrarTodo.setBounds(447, 381, 70, 31);
 		getContentPane().add(btnBorrarTodo);
 
-		btnCrearTabla = new JButton("Insertar Cliente");
-		btnCrearTabla.setBounds(274, 133, 187, 31);
+		btnCrearTabla = new JButton("Crear tabla");
+		btnCrearTabla.setBounds(274, 125, 187, 31);
 		getContentPane().add(btnCrearTabla);
-
-		table_1 = new JTable();
-		table_1.setModel(
-				new DefaultTableModel(
-			new Object[][] {
-				{"id", "nombre", "apellido", "dni", "direccion", "fecha"},
-			},
-			new String[] {
-				"Id", "Nombre", "Apellido", "Dni", "Direccion", "Fecha"
-			}
-		));
-		table_1.setBounds(23, 394, 468, 341);
-		getContentPane().add(table_1);
 
 		textField_Nombre = new JTextField();
 		textField_Nombre.setBounds(39, 100, 114, 19);
@@ -161,17 +150,18 @@ public class Vista extends JFrame {
 		lblBuscarNombre.setBounds(40, 277, 260, 14);
 		getContentPane().add(lblBuscarNombre);
 		
-		tableVideos = new JTable();
-		tableVideos.setModel(new DefaultTableModel(
-			new Object[][] {
-				{"id", "titulo", "director", "id_cliente"},
-			},
-			new String[] {
-				"ID", "Titulo", "Director", "ID_Cliente"
-			}
-		));
-		tableVideos.setBounds(652, 394, 468, 341);
-		getContentPane().add(tableVideos);
+		btnAñadirCliente = new JButton("Añadir Cliente");
+		btnAñadirCliente.setBounds(274, 187, 187, 31);
+		getContentPane().add(btnAñadirCliente);
+		
+		textArea = new JTextArea();
+		textArea.setBounds(39, 430, 478, 300);
+		getContentPane().add(textArea);
+		
+		textField_IdABorrar = new JTextField();
+		textField_IdABorrar.setBounds(257, 386, 168, 19);
+		getContentPane().add(textField_IdABorrar);
+		textField_IdABorrar.setColumns(10);
 		
 		JLabel lblVideos = new JLabel("Panel Videos");
 		lblVideos.setFont(new Font("Tahoma", Font.BOLD, 20));
@@ -215,11 +205,11 @@ public class Vista extends JFrame {
 		getContentPane().add(btnBuscarPorTitulo);
 		
 		btnInsertarVideo = new JButton("Insertar Video");
-		btnInsertarVideo.setBounds(939, 133, 187, 31);
+		btnInsertarVideo.setBounds(939, 187, 187, 31);
 		getContentPane().add(btnInsertarVideo);
 		
-		btnBorrarVideos = new JButton("Borrar todo");
-		btnBorrarVideos.setBounds(939, 187, 187, 31);
+		btnBorrarVideos = new JButton("Borrar");
+		btnBorrarVideos.setBounds(1124, 381, 82, 31);
 		getContentPane().add(btnBorrarVideos);
 		
 		lblFormularioVideo = new JLabel("Formulario para añadir nuevo video:");
@@ -232,6 +222,29 @@ public class Vista extends JFrame {
 		lblBuscadorDeVideos.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblBuscadorDeVideos.setBounds(705, 278, 260, 14);
 		getContentPane().add(lblBuscadorDeVideos);
+		
+		textArea_Video = new JTextArea();
+		textArea_Video.setBounds(661, 430, 545, 300);
+		getContentPane().add(textArea_Video);
+		
+		btnCrearTablaVideo = new JButton("Crear tabla");
+		btnCrearTablaVideo.setBounds(939, 125, 187, 31);
+		getContentPane().add(btnCrearTablaVideo);
+		
+		JLabel lblNewLabel = new JLabel("Borrar cliente (por identificador):");
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblNewLabel.setBounds(39, 389, 222, 14);
+		getContentPane().add(lblNewLabel);
+		
+		JLabel lblBorrarVideopor = new JLabel("Borrar video (por identificador):");
+		lblBorrarVideopor.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblBorrarVideopor.setBounds(706, 389, 222, 14);
+		getContentPane().add(lblBorrarVideopor);
+		
+		textFieldBorrarVideo = new JTextField();
+		textFieldBorrarVideo.setColumns(10);
+		textFieldBorrarVideo.setBounds(929, 386, 168, 19);
+		getContentPane().add(textFieldBorrarVideo);
 
 		btnCrearTabla.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {

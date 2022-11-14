@@ -10,7 +10,7 @@ public class DAO {
 	private final String DRIVER = "com.mysql.cj.jdbc.Driver";
 	private final String USER = "root";
 	private final String PASSWORD = "SarIMp9jrL6OkqrU6U0g";
-	private final String bd = "tarea22_1;";
+	private final String bd = "tarea22_2;";
 
 	protected Connection conexion = null;
 	protected Statement statement = null;
@@ -57,6 +57,7 @@ public class DAO {
 			statement.executeUpdate("DROP database IF EXISTS " + bd + ";");
 			statement.executeUpdate("CREATE DATABASE IF NOT EXISTS  " + bd + ";");
 			statement.executeUpdate("use " + bd);
+			System.out.println("Conecto!");
 		} catch (SQLException e) {
 			System.out.println("Error en la conexion funcion Create" + e);
 			e.printStackTrace();
@@ -73,7 +74,7 @@ public class DAO {
 			statement.executeUpdate("use " + bd);
 			statement.executeUpdate(sql);
 		} catch (SQLException e) {
-			System.out.println("error a la conexion");
+			System.out.println("error a la conexion funcion CUD");
 			e.printStackTrace();
 		}
 		disconnect();
@@ -85,6 +86,7 @@ public class DAO {
 		try {
 			connect();
 			statement = conexion.createStatement();
+			statement.executeUpdate("use " + bd);
 			resultado = statement.executeQuery(sql);
 		} catch (Exception e) {
 			e.printStackTrace();
